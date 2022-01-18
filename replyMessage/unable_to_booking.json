@@ -1,0 +1,107 @@
+{
+    "type": "bubble",
+    "size": "kilo",
+    "direction": "ltr",
+    "hero": {
+        "type": "image",
+        "url": "https://static.vecteezy.com/system/resources/previews/000/135/650/original/vector-high-speed-rail-tgv-city-train-lanscape-ilustration.jpg",
+        "size": "full",
+        "aspectRatio": "20:15",
+        "aspectMode": "cover",
+        "action": {
+            "type": "uri",
+            "uri": "http://linecorp.com/"
+        }
+    },
+    "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "text",
+                "text": "區間1234",
+                "weight": "bold",
+                "size": "xl",
+                "gravity": "top",
+                "color": "#f75000",
+                "margin": "sm"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "margin": "lg",
+                "spacing": "sm",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "spacing": "none",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "時間",
+                                "color": "#bb3d00",
+                                "size": "md",
+                                "flex": 1,
+                                "weight": "bold",
+                                "margin": "none"
+                            },
+                            {
+                                "type": "text",
+                                "text": "12:00 至 14:00 ",
+                                "wrap": true,
+                                "color": "#642100",
+                                "size": "md",
+                                "flex": 5,
+                                "margin": "none",
+                                "weight": "regular",
+                                "position": "relative"
+                            }
+                        ],
+                        "margin": "none",
+                        "borderWidth": "none"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "baseline",
+                        "spacing": "sm",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "經由",
+                                "color": "#bb3d00",
+                                "size": "md",
+                                "flex": 1,
+                                "weight": "bold",
+                                "margin": "none"
+                            },
+                            {
+                                "type": "text",
+                                "text": "山線",
+                                "wrap": true,
+                                "color": "#642100",
+                                "size": "md",
+                                "flex": 5,
+                                "margin": "none"
+                            }
+                        ],
+                        "margin": "none"
+                    }
+                ]
+            }
+        ],
+        "margin": "none",
+        "spacing": "none",
+        "backgroundColor": "#ffeedd"
+    },
+    "action": {
+        "type": "message",
+        "label": "action",
+        "text": "hello"
+    },
+    "styles": {
+        "header": {
+            "separator": true
+        }
+    }
+}

@@ -1,0 +1,1 @@
+web: gunicorn trainlinebot:app –preload
