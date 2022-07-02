@@ -7,8 +7,6 @@ import json
 import datetime
 
 sys.path.append("./trainInfo")
-import trainQuery
-
 data_input = "1/17 10 16 彰化 二水".split(' ')
 
 try:

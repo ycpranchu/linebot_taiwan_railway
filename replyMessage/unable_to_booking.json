@@ -4,7 +4,7 @@
     "direction": "ltr",
     "hero": {
         "type": "image",
-        "url": "https://static.vecteezy.com/system/resources/previews/000/135/650/original/vector-high-speed-rail-tgv-city-train-lanscape-ilustration.jpg",
+        "url": "https://img.lanrentuku.com/img/allimg/1806/15302374672555.jpg",
         "size": "full",
         "aspectRatio": "20:15",
         "aspectMode": "cover",
@@ -39,6 +39,35 @@
                         "contents": [
                             {
                                 "type": "text",
+                                "text": "日期",
+                                "color": "#bb3d00",
+                                "size": "md",
+                                "flex": 1,
+                                "weight": "bold",
+                                "margin": "none"
+                            },
+                            {
+                                "type": "text",
+                                "text": "2022-06-20",
+                                "wrap": true,
+                                "color": "#642100",
+                                "size": "md",
+                                "flex": 5,
+                                "margin": "none",
+                                "weight": "regular",
+                                "position": "relative"
+                            }
+                        ],
+                        "margin": "sm",
+                        "borderWidth": "none"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "spacing": "none",
+                        "contents": [
+                            {
+                                "type": "text",
                                 "text": "時間",
                                 "color": "#bb3d00",
                                 "size": "md",
@@ -58,7 +87,7 @@
                                 "position": "relative"
                             }
                         ],
-                        "margin": "none",
+                        "margin": "sm",
                         "borderWidth": "none"
                     },
                     {
@@ -85,7 +114,7 @@
                                 "margin": "none"
                             }
                         ],
-                        "margin": "none"
+                        "margin": "sm"
                     }
                 ]
             }

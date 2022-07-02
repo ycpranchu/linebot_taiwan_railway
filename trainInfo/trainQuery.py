@@ -9,7 +9,7 @@ app_id = 'bbdd93559e754dc68c2e502ced7664dc'
 app_key = 'fEzsx4juJ6abEZqgCUQgfN9q1wI'
 
 
-def trainQuery(start_station, end_station, ride_date, start_time, end_time):
+def trainQuery(user_id, start_station, end_station, ride_date, start_time, end_time, query_type = "0"):
 
     a = ptx_info.Demo(app_id, app_key)
     data_response = request(
@@ -20,14 +20,14 @@ def trainQuery(start_station, end_station, ride_date, start_time, end_time):
     start_station = start_station.replace('台', '臺', 1)
     end_station = end_station.replace('台', '臺', 1)
 
-    train_code_data = pd.read_csv("trainInfo/trainCode.csv", index_col="車站")
-    train_code_data.loc[start_station]
-    train_code_data.loc[end_station]
+    # train_code_data = pd.read_csv("trainInfo/trainCode.csv", index_col="車站")
+    # train_code_data.loc[start_station]
+    # train_code_data.loc[end_station]
 
-    with open('trainInfo/trainData.csv', 'w', newline='', encoding='utf-8') as csvfile:
+    with open('trainInfo/trainData/' + user_id + '_trainData.csv', 'w', newline='', encoding='utf-8') as csvfile:
         spamwriter = csv.writer(csvfile, dialect='excel')
         spamwriter.writerow(
-            ['日期', '車種車次', '出發時間', '抵達時間', '經由', '訂票'])
+            ['日期', '車種車次', '出發站', '抵達站', '出發時間', '抵達時間', '經由', '訂票', 'booking'])
 
         for data in data_response.json():
 
@@ -67,11 +67,17 @@ def trainQuery(start_station, end_station, ride_date, start_time, end_time):
 
                 if time < int(start_time) or time >= int(end_time):
                     continue
-                spamwriter.writerow(
-                    [ride_date, train_type + ' ' + train_number, departure_time, arrive_time, trip_type, booking])
+                
+                if query_type == "0":
+                    spamwriter.writerow(
+                        [ride_date, train_type + ' ' + train_number, start_station, end_station, departure_time, arrive_time, trip_type, booking])
+                elif query_type == train_type:
+                    spamwriter.writerow(
+                        [ride_date, train_type + ' ' + train_number, start_station, end_station, departure_time, arrive_time, trip_type, booking])
+                    
 
     # format data
-    data = pd.read_csv('trainInfo/trainData.csv', engine='python')
+    data = pd.read_csv('trainInfo/trainData/' + user_id + '_trainData.csv', engine='python')
     data = data.sort_values(['出發時間'], ascending=True)
     data = data.set_index('日期')
-    data.to_csv('trainInfo/trainData.csv', encoding='utf8')
+    data.to_csv('trainInfo/trainData/' + user_id + '_trainData.csv', encoding='utf8')
