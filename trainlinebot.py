@@ -71,7 +71,7 @@ def handle_message(event):
 
         except Exception as e:
             line_bot_api.reply_message(
-                event.reply_token, TextSendMessage(text="格式輸入錯誤!\n正確格式為：年(非必填)/月/日 時間 時間 起點 終點"))
+                event.reply_token, TextSendMessage(text="格式輸入錯誤!\n正確格式為：月/日 時間 時間 起點 終點"))
             return
 
         try:
