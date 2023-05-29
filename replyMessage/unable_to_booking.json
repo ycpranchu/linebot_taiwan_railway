@@ -123,11 +123,6 @@
         "spacing": "none",
         "backgroundColor": "#ffeedd"
     },
-    "action": {
-        "type": "message",
-        "label": "action",
-        "text": "hello"
-    },
     "styles": {
         "header": {
             "separator": true
