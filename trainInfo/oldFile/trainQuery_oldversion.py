@@ -11,20 +11,19 @@ import pandas as pd
 import datetime
 
 
-def trainQuery(start_station, end_station,
-               ride_date, start_time, end_time):
+def trainQuery(user_id, start_station, end_station, ride_date, start_time, end_time):
 
     GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
     CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-
+    
     chrome_bin = os.environ.get('GOOGLE_CHROME_PATH', None)
     option = Options()
     option.binary_location = chrome_bin
     option.add_argument('--disable-gpu')
     option.add_argument('--no-sandbox')
+    option.add_argument("--disable-notifications")
 
-    gobytime_chrome = webdriver.Chrome(executable_path="chromedriver",
-                                       chrome_options=option)
+    gobytime_chrome = webdriver.Chrome(executable_path="C:/Users/ycpin/我的雲端硬碟/Side Project/trainlinebot-ycpin/trainInfo/chromedriver", options=option)
     gobytime_chrome.get(
         "https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip112/gobytime")  # 依時刻
 
@@ -81,7 +80,7 @@ def trainQuery(start_station, end_station,
     gobytime_soup = BeautifulSoup(gobytime_chrome.page_source, 'lxml')
     gobytime_html = gobytime_soup.find_all('tr', class_='trip-column')
 
-    with open('trainData.csv', 'w', newline='', encoding='utf-8') as csvfile:
+    with open('trainInfo/trainData/' + user_id + '_trainData.csv', 'w', newline='', encoding='utf-8') as csvfile:
         spamwriter = csv.writer(csvfile, dialect='excel')
         spamwriter.writerow(
             ['日期', '車種車次', '出發站', '抵達站', '始發站', '終點站', '出發時間', '抵達時間', '行駛時長', '經由', '全票', '孩童票', '敬老票', '訂票'])
@@ -129,4 +128,4 @@ end_time = data_input[2]
 start_station = data_input[3]
 end_station = data_input[4]
 
-trainQuery(start_station, end_station, ride_date, start_time, end_time)
+trainQuery("123", start_station, end_station, ride_date, start_time, end_time)

@@ -7,7 +7,9 @@ import json
 import datetime
 
 sys.path.append("./trainInfo")
-data_input = "1/17 10 16 彰化 二水".split(' ')
+import trainQuery
+
+data_input = "6/17 10 16 彰化 台中".split(' ')
 
 try:
     date = data_input[0].split('/')
@@ -33,12 +35,7 @@ except:
     print("格式輸入錯誤!\n正確格式為：年(非必填)/月/日 時間 時間 起點 終點")
     exit()
 
-try:
-    trainQuery.trainQuery(start_station, end_station,
-                        ride_date, start_time, end_time)
-except:
-    print("資料輸入錯誤，查詢失敗！")
-    exit()
+trainQuery.trainQuery("test", start_station, end_station, ride_date, start_time, end_time)
 
 record_a = []
 record_a.append({
@@ -65,7 +62,7 @@ input_data_count = 0
 count = 0
 
 # 產生輸出樣式
-with open('trainInfo/trainData.csv', encoding='utf-8') as csvfile:
+with open('trainInfo/trainData/test_trainData.csv', encoding='utf-8') as csvfile:
     rows = csv.DictReader(csvfile)
 
     if list(rows) == []:
@@ -73,9 +70,8 @@ with open('trainInfo/trainData.csv', encoding='utf-8') as csvfile:
 
 
 # 產生輸出樣式
-with open('trainInfo/trainData.csv', encoding='utf-8') as csvfile:
+with open('trainInfo/trainData/test_trainData.csv', encoding='utf-8') as csvfile:
     rows = csv.DictReader(csvfile)
-
 
     for row in rows:
         if(row['訂票'] == '可'):  # 可訂票車次

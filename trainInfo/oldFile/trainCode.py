@@ -15,5 +15,4 @@ with open('trainCode.csv', 'w', newline='', encoding='utf-8') as csvfile:
     spamwriter.writerow(['車站', '代碼'])
 
     for i in range(len(stationName)):
-        spamwriter.writerow(
-            [stationName[i].text, stationCode[i].text])
+        spamwriter.writerow([stationName[i].text, stationCode[i].text])

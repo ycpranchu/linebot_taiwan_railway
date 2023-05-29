@@ -1,27 +1,34 @@
-from hashlib import sha1
-import hmac
-from wsgiref.handlers import format_date_time
-from datetime import datetime
-from time import mktime
-import base64
+import json
 
-class Demo():
-    
+class Auth():
+
     def __init__(self, app_id, app_key):
         self.app_id = app_id
         self.app_key = app_key
 
-    def get_auth_header(self): # header
-        xdate = format_date_time(mktime(datetime.now().timetuple()))
-        hashed = hmac.new(self.app_key.encode('utf8'), ('x-date: ' + xdate).encode('utf8'), sha1)
-        signature = base64.b64encode(hashed.digest()).decode()
+    def get_auth_header(self):  # header
+        content_type = 'application/x-www-form-urlencoded'
+        grant_type = 'client_credentials'
 
-        authorization = 'hmac username="' + self.app_id + '", ' + \
-                        'algorithm="hmac-sha1", ' + \
-                        'headers="x-date", ' + \
-                        'signature="' + signature + '"'
-        return {
-            'Authorization': authorization,
-            'x-date': format_date_time(mktime(datetime.now().timetuple())),
-            'Accept - Encoding': 'gzip'
+        return{
+            'content-type': content_type,
+            'grant_type': grant_type,
+            'client_id': self.app_id,
+            'client_secret': self.app_key
+        }
+
+
+class Data():
+
+    def __init__(self, app_id, app_key, auth_response):
+        self.app_id = app_id
+        self.app_key = app_key
+        self.auth_response = auth_response
+
+    def get_data_header(self):
+        auth_JSON = json.loads(self.auth_response.text)
+        access_token = auth_JSON.get('access_token')
+
+        return{
+            'authorization': 'Bearer '+access_token
         }
