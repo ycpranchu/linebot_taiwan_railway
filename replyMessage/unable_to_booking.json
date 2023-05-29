@@ -77,7 +77,7 @@
                             },
                             {
                                 "type": "text",
-                                "text": "12:00 至 14:00 ",
+                                "text": "12:00 至 14:00 經由山線",
                                 "wrap": true,
                                 "color": "#642100",
                                 "size": "md",
@@ -97,7 +97,7 @@
                         "contents": [
                             {
                                 "type": "text",
-                                "text": "經由",
+                                "text": "票價",
                                 "color": "#bb3d00",
                                 "size": "md",
                                 "flex": 1,
@@ -106,7 +106,7 @@
                             },
                             {
                                 "type": "text",
-                                "text": "山線",
+                                "text": "45",
                                 "wrap": true,
                                 "color": "#642100",
                                 "size": "md",

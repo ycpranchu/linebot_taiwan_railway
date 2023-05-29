@@ -49,7 +49,7 @@ def handle_message(event):
         try:
             date = data_input[0].split('/')
             if len(date[0]) != 4:
-                if int(date[1]) <= datetime.datetime.now().month and int(date[1]) < datetime.datetime.now().day:
+                if int(date[0]) <= datetime.datetime.now().month and int(date[1]) < datetime.datetime.now().day:
                     date.insert(0, str(datetime.datetime.now().year + 1))
                 else:
                     date.insert(0, str(datetime.datetime.now().year))
@@ -124,16 +124,16 @@ def handle_message(event):
                     able_input_data = json.loads(able_input_file)
                     able_input_data["body"]["contents"][0]["text"] = row['車種車次']
                     able_input_data["body"]["contents"][1]["contents"][0]["contents"][1]["text"] = dateFormat
-                    able_input_data["body"]["contents"][1]["contents"][1]["contents"][1]["text"] = row['出發時間'] + ' 至 ' + row['抵達時間']
-                    able_input_data["body"]["contents"][1]["contents"][2]["contents"][1]["text"] = row['經由']
+                    able_input_data["body"]["contents"][1]["contents"][1]["contents"][1]["text"] = row['出發時間'] + ' 至 ' + row['抵達時間'] + ' ' + row['經由']
+                    able_input_data["body"]["contents"][1]["contents"][2]["contents"][1]["text"] = row['票價']
 
                     elements.append(able_input_data)
                 else:  # 不可訂票車次
                     unable_input_data = json.loads(unable_input_file)
                     unable_input_data["body"]["contents"][0]["text"] = row['車種車次']
                     unable_input_data["body"]["contents"][1]["contents"][0]["contents"][1]["text"] = dateFormat
-                    unable_input_data["body"]["contents"][1]["contents"][1]["contents"][1]["text"] = row['出發時間'] + ' 至 ' + row['抵達時間']
-                    unable_input_data["body"]["contents"][1]["contents"][2]["contents"][1]["text"] = row['經由']
+                    unable_input_data["body"]["contents"][1]["contents"][1]["contents"][1]["text"] = row['出發時間'] + ' 至 ' + row['抵達時間'] + ' ' + row['經由']
+                    unable_input_data["body"]["contents"][1]["contents"][2]["contents"][1]["text"] = row['票價']
                     
                     elements.append(unable_input_data)
 
