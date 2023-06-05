@@ -64,7 +64,7 @@ def trainQuery(user_id, start_station, end_station, ride_date, start_time, end_t
             train_number = info["TrainNo"]
 
             trip_code = {0: '不經山海線', 1: '山線', 2: '海線', 3: '成追線'}
-            train_code = {1: '太魯閣', 2: '普悠瑪', 3: '自強', 4: '莒光', 5: '復興', 6: '區間', 7: '普快', 10: '區間快', 11: '騰雲座艙'}
+            train_code = {1: '太魯閣', 2: '普悠瑪', 3: '自強', 4: '莒光', 5: '復興', 6: '區間', 7: '普快', 10: '區間快', 11: '新自強'}
 
             try:
                 trip_type = trip_code[info["TripLine"]]
