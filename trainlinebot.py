@@ -15,8 +15,8 @@ import trainQuery
 app = Flask(__name__)
 
 # LINE 聊天機器人的基本資料
-line_bot_api = LineBotApi('jJisTObx7OduP362CboSPS8X3vj9XBeSv8IYFwI8f+/v7EIjZfZkuJtJmigbcNNmgzXEV0WRoKe9h7dMOoU6Un6Q3Mt395VW5b1RgGqgatjfuuWOGT0PXfw7t/vOO3c2G30IA8aVgZ5c4YygTvdLIQdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('428e771830a916031feb0a3f0d239ce5')
+line_bot_api = LineBotApi('')
+handler = WebhookHandler('')
 
 @app.route("/callback", methods=['POST'])
 def callback():
