@@ -9,7 +9,7 @@ import datetime
 sys.path.append("./trainInfo")
 import trainQuery
 
-data_input = "6/1 10 16 彰化 台中".split(' ')
+data_input = "1/18 10 15 臺北 新竹".split(' ')
 print(datetime.datetime.now().year)
 
 try:

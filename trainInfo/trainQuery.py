@@ -1,35 +1,27 @@
-from requests import request
-import requests
-import ptx_info
-import json
-import csv
+import requests 
 import pandas as pd
-import operator
+import ptx_info
+import csv
 
 app_id = 'ycpin0624-3f23df5b-7375-474b'
 app_key = '503b7320-ed7c-4989-800a-6fa51af60cbd'
-
 
 def trainQuery(user_id, start_station, end_station, ride_date, start_time, end_time):
         
     start_station = start_station.replace('台', '臺', 1)
     end_station = end_station.replace('台', '臺', 1)
-
-    train_code_data = pd.read_csv("trainInfo/trainCode.csv", index_col="車站")
-    start_code = str(train_code_data.loc[start_station, "代碼"])
-    end_code = str(train_code_data.loc[end_station, "代碼"])
+    
+    table = pd.read_csv("trainInfo/trainCode.csv")
+    start_code = str(table.loc[table['車站'] == start_station, '代碼'].iloc[0])
+    end_code = str(table.loc[table['車站'] == end_station, '代碼'].iloc[0])
 
     auth_url="https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token"
     url_data = "https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/DailyTrainTimetable/OD/Inclusive/" + start_code + "/to/" + end_code + "/" + ride_date + "?format=JSON"
     url_price = "https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/ODFare/" + start_code + "/to/" + end_code + "?format=JSON"
 
-    # try:
-    #     d = ptx_info.Data(app_id, app_key, auth_response)
-    #     data_response = requests.get(url_data, headers=d.get_data_header())
-    #     price_response = requests.get(url_price, headers=d.get_data_header())
-    # except:
     a = ptx_info.Auth(app_id, app_key)
     auth_response = requests.post(auth_url, a.get_auth_header())
+    
     d = ptx_info.Data(app_id, app_key, auth_response)
 
     data_response = requests.get(url_data, headers=d.get_data_header())  
@@ -79,7 +71,7 @@ def trainQuery(user_id, start_station, end_station, ride_date, start_time, end_t
                 booking = "不可"
             
             spamwriter.writerow([ride_date, train_type + ' ' + train_number, start_station, end_station, departure_time, arrive_time, trip_type, trip_price, booking])
-                    
+    
     # format data
     data = pd.read_csv('trainInfo/trainData/' + user_id + '_trainData.csv', engine='python')
     data = data.sort_values(['出發時間'], ascending=True)
