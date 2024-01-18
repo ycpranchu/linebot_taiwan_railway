@@ -3,8 +3,8 @@ import pandas as pd
 import ptx_info
 import csv
 
-app_id = 'ycpin0624-3f23df5b-7375-474b'
-app_key = '503b7320-ed7c-4989-800a-6fa51af60cbd'
+app_id = ''
+app_key = ''
 
 def trainQuery(user_id, start_station, end_station, ride_date, start_time, end_time):
         
